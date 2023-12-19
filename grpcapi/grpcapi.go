@@ -102,7 +102,7 @@ func (s *MailServer) DeleteEmail(ctx context.Context, req *pb.DeleteEmailRequest
 func Serve(db *sql.DB, bind string) {
 	listener, err := net.Listen("tcp", bind)
 	if err != nil {
-
+		log.Fatalf("GRPC server error: %v", err)
 	}
 	grpcServer := grpc.NewServer()
 	mailServer := MailServer{db: db}
